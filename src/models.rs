@@ -11,7 +11,7 @@ pub mod buses {
 impl From<Vec<bus_arrival::ArrivalBusService>> for BusTimings {
     fn from(arrivals: Vec<bus_arrival::ArrivalBusService>) -> Self {
         BusTimings {
-            arrivals: arrivals.into_iter().map(|v| From::from(v)).collect()
+            arrivals: arrivals.into_iter().map(|v| From::from(v)).collect(),
         }
     }
 }
@@ -78,4 +78,3 @@ fn from_bus_operator(bo: &bus_enums::Operator) -> i32 {
         bus_enums::Operator::GAS => 3,
     }
 }
-

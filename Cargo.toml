@@ -15,5 +15,8 @@ lazy_static = "1.4.0"
 tokio = { version = "0.2.21", features = ["macros"] }
 cht = "0.4.1"
 
+[target.'cfg(not(target_env = "msvc"))'.dependencies]
+jemallocator = "0.3.2"
+
 [build-dependencies]
 tonic-build = { version = "0.2.0", features = ["prost"]}

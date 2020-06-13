@@ -1,32 +1,34 @@
 #[macro_use]
 extern crate lazy_static;
 
+use crate::cache::Cache;
 use crate::models::buses::just_bus_server::{JustBus, JustBusServer};
 use crate::models::buses::*;
-use crate::cache::Cache;
-use tonic::{Request, Response, Status};
 use lta::prelude::*;
 use lta::r#async::bus::get_arrival;
 use lta::r#async::lta_client::LTAClient;
 use std::env::var;
-use tonic::transport::Server;
 use std::time::Duration;
+use tonic::transport::Server;
+use tonic::{Request, Response, Status};
 
-mod models;
 mod cache;
+mod models;
+
+#[cfg(not(target_env = "msvc"))]
+#[global_allocator]
+static ALLOC: jemallocator::Jemalloc = jemallocator::Jemalloc;
 
 lazy_static! {
     static ref CLIENT: LTAClient = {
         let api_key = var("API_KEY").expect("API_KEY not found!");
         LTAClient::with_api_key(api_key)
     };
-
     static ref CACHE: Cache<u32, BusTimings> = {
         let duration = Duration::from_secs(15);
         Cache::with_ttl(duration)
     };
 }
-
 
 #[derive(Default)]
 pub struct MyJustBus;

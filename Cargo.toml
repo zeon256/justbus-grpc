@@ -1,0 +1,19 @@
+[package]
+name = "justbus-rpc"
+version = "0.1.0"
+authors = ["BudiNverse <me@inve.rs>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tonic = { version = "0.2.1", features = ["tls"]}
+lta = { version = "0.4.0", features = ["async"] }
+prost = "0.6"
+prost-types = "0.6"
+lazy_static = "1.4.0"
+tokio = { version = "0.2.21", features = ["macros"] }
+cht = "0.4.1"
+
+[build-dependencies]
+tonic-build = { version = "0.2.0", features = ["prost"]}

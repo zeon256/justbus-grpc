@@ -14,6 +14,8 @@
 # `justbus-grpc`
 > A lightweight gRPC implementation of [justbus-rs](https://github.com/BudiNverse/justbus-rs)
 
+## Status: Unmaintained!
+
 ## Usage
 ```
 grpcurl -plaintext -import-path ./proto -proto buses.proto -d '{"bus_stop_id": 83139}' [::]:50051 buses.JustBus/Timings
